@@ -1,0 +1,27 @@
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import pandas as pd
+
+df = pd.read_csv("Data.csv") 
+x = df["Open"]
+y = df["Close"]
+
+fig, ax = plt.subplots()
+ax.scatter(x,y,label="Open to Close",marker="x",color="#0044ff",s=100)
+
+ax.set_title("Open to Close Plot",style="oblique",fontweight="bold")
+
+x_ticks = [770 + i for i in range(11)] #[770,771,...780]
+y_ticks = [770,775,780]
+ax.set_xticks(x_ticks)
+ax.set_yticks(y_ticks)
+
+ax.set_xlabel("Open")
+ax.set_ylabel("Close")
+
+ax.grid(True,which="major")
+ax.yaxis.set_minor_locator(ticker.MultipleLocator(1))
+ax.grid(True,which="minor") 
+
+ax.legend(loc="upper left")
+plt.show()
